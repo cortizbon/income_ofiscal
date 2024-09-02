@@ -29,6 +29,12 @@ hm = (ing
                      .sum(axis=1), axis=0))
 hm_un = hm.unstack().reset_index()
 
+d = ing.groupby('AÑO')['valor_ingresos_pc'].sum().div(1_000_000_000_000).reset_index()
+
+fig = px.line(d, x='AÑO', y='valor_ingresos_pc', title='Ingresos del PGN (billones de pesos)')
+
+st.plotly_chart(fig)
+
 fig = px.bar(hm_un, x='AÑO', y=0, color='TIPO DE INGRESOS' )
 
 st.plotly_chart(fig)
